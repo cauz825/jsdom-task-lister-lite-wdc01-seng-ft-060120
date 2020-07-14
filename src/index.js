@@ -5,12 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
   newTask.addEventListener(`submit`, (e) => {
     e.preventDefault();
     let task = document.getElementById(`new-task-description`)
-    // let taskText = task.value
-    taskList.innerHTML += `<li>${taskText}</li>`
-    document.getElementById(`new-task-description`).value = ""
-    // newTask.reset()
+    taskList.innerHTML += `<li>${task.value}  <button class="btn-delete">Delete</button></li>`
+    task.value = ''
+
+    let deleteButton = document.getElementsByClassName('btn-delete');
+    // console.log(deleteButton)
+    deleteButton[0].addEventListener('click', () =>{
+      taskList.innerHTML = ""
+      // taskList.delete(taskList.firstChild());
+    });
   });
-
-
-    
 });
