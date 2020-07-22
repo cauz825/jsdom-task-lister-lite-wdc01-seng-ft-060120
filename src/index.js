@@ -1,18 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // your code here
-  let newTask = document.getElementById(`create-task-form`)
-  const taskList = document.getElementById(`tasks`)
-  newTask.addEventListener(`submit`, (e) => {
-    e.preventDefault();
-    let task = document.getElementById(`new-task-description`)
-    taskList.innerHTML += `<li>${task.value}  <button class="btn-delete">Delete</button></li>`
-    task.value = ''
 
-    let deleteButton = document.getElementsByClassName('btn-delete');
-    // console.log(deleteButton)
-    deleteButton[0].addEventListener('click', () =>{
-      taskList.innerHTML = ""
-      // taskList.delete(taskList.firstChild());
-    });
-  });
-});
+  const taskForm = document.getElementById('create-task-form')
+  const taskUl = document.getElementById('tasks')
+  const taskInput = document.getElementById('new-task-description')
+  const taskList = document.getElementById('list')
+
+  taskForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const inputText = e.target['new-task-description'].value // grab the text from the input field
+    const listLi = document.createElement('li'); // creates new <li> element
+    listLi.textContent = inputText // adds the input value to our new li element
+    taskUl.append(listLi) // appends our new li to existing
+    taskInput.value = ''
+
+    const btn = document.createElement('button')
+    btn.textContent = 'X'
+    listLi.append(btn)
+
+    btn.addEventListener('click', (e) => {
+        e.target.parentElement.remove()
+    })
+  })
+})
